@@ -40,12 +40,13 @@ namespace MyTasks.Controllers
         {
             var userId = User.GetUserId();
 
-            var tasks = _taskRepository.Get(userId, viewModel.FilterTasks.IsExecuted,
+            var tasks = _taskRepository.Get(userId,
+                viewModel.FilterTasks.IsExecuted,
                 viewModel.FilterTasks.CategoryId,
                 viewModel.FilterTasks.Title);
 
  
-            return PartialView("_TasksTable.cshtml", tasks);
+            return PartialView("_TasksTable", tasks);
         }
 
         public IActionResult Task(int id =0)
@@ -92,7 +93,7 @@ namespace MyTasks.Controllers
             return RedirectToAction("Tasks");
         }
 
-        [HttpDelete]
+        [HttpPost]
         public IActionResult Delete(int id)
         {
 

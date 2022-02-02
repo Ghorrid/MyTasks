@@ -20,13 +20,14 @@ namespace MyTasks.Persistence.Repositories
                 .Where(x => x.UserId == userId && x.IsExecuted == isExecuted);
             
             if (categoryId !=0)
-                tasks.Where(x => x.CategoryId == categoryId);
+               tasks= tasks.Where(x => x.CategoryId == categoryId);
 
             if (!string.IsNullOrWhiteSpace(title))
-                tasks.Where(x => x.Title.Contains(title));
+                tasks = tasks.Where(x => x.Title.Contains(title));
 
             return tasks.OrderBy(x => x.Term).ToList();
         }
+
 
         public IEnumerable<Category> GetCategories()
         {
