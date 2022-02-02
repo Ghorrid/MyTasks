@@ -10,7 +10,7 @@
     <p class="alert alert-info mt-4 mb-4">
         Pola tytuł, opis i kategoria są <strong>wymagane</strong>
     </p>
-}
+
 @Html.AntiForgeryToken()
 @Html.HiddenFor(x=>x.Task.Id)
 
@@ -39,7 +39,7 @@
         @Html.ValidationMessageFor(x =>x.Task.Term)
     </div>
 
-    if (Model.Task.if >0)
+    @if (Model.Task.Id >0)
     {
        <div class="form-check">
         @Html.CheckBoxFor(x=>x.Task.IsExecuted, new {@class="form-check-input"  } )
@@ -47,8 +47,8 @@
     </div>
     }
 
-    <button class="btn btn-primary btn-lg mt-2" type="submit" >Zapisz</button>
-
+    <button class="btn btn-primary btn-lg mt-2" type="submit">Zapisz</button>
+}
 @section scripts 
 {
       <script type="text/javascript" >

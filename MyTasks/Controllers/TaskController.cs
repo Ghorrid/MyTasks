@@ -32,7 +32,7 @@ namespace MyTasks.Controllers
                 Tasks = _taskRepository.Get(userId),
                 Categories = _taskRepository.GetCategories()
             };
-            return View();
+            return View(vm);
         }
         
         [HttpPost]
@@ -45,7 +45,7 @@ namespace MyTasks.Controllers
                 viewModel.FilterTasks.Title);
 
  
-            return PartialView("_TasksTable", tasks);
+            return PartialView("_TasksTable.cshtml", tasks);
         }
 
         public IActionResult Task(int id =0)

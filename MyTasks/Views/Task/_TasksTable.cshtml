@@ -36,9 +36,9 @@
                 @task.Term?.ToString("dd-MM-yyyy")
             </td>
                 <td>
-                          @if (task.IsExecuted)
+                          @if (!task.IsExecuted)
                             {
-                                <button class="btn btn-succes btn-sm mr-2" onclick="finishTask(@task.Id, this)">
+                                <button class="btn btn-primary btn-sm mr-2" onclick="finishTask(@task.Id, this)">
                                     Zrealizuj
                                 </button>
                             }

@@ -6,6 +6,8 @@
 <h1 class ="mb-3">Moje zadania</h1>
 
 <form id ="filterForm">
+    
+
   <div class="form-row align-items-center">
     <div class="col-sm-3 my-1">
       @Html.TextBoxFor(x=> x.FilterTasks.Title, new {@class ="form-control mb-2", placeholder ="Tytuł"})
@@ -26,13 +28,13 @@
       </div>
     </div>
     <div class="col-auto my-1">
-      <button type="submit" class="btn btn-primary mb-2 ">Szukaj</button>
+      <button  class="btn btn-primary mb-2" type="submit" >Szukaj</button>
     </div>
   </div>
 </form>
 
 <div>
-    @await Html.PartialAsync("_TaskTable.cshtml", Model.Tasks)
+    @await Html.PartialAsync("_TasksTable.cshtml", Model.Tasks)
 </div>
 
 @section Scripts
@@ -69,7 +71,7 @@
                 data:
                 {
                     id: id
-                }
+                },
                 success: function (data) {
                     if (data.success) {
                     var row = btn.parentNode.parentNode;
@@ -95,7 +97,7 @@
                 data:
                 {
                     id: id
-                }
+                },
                 success: function (data) {
                     if (data.success) {
                     var row = btn.parentNode.parentNode;
