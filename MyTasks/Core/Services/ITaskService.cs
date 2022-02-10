@@ -7,8 +7,7 @@ namespace MyTasks.Core.Services
         IEnumerable<Models.Domains.Task> Get(string userId, bool isExecuted = false, int categoryId = 0, string title = null);
       
 
-
-        IEnumerable<Category> GetCategories();
+        IEnumerable<Category> GetCategories(string userId);
       
 
         Models.Domains.Task Get(string userId, int id);
@@ -24,6 +23,8 @@ namespace MyTasks.Core.Services
    
 
         void Finish(int id, string userId);
+
+
     
     }
 }

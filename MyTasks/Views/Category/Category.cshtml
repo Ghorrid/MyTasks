@@ -1,0 +1,20 @@
+﻿@model MyTasks.Core.ViewModels.CategoryViewModel
+@{
+    ViewData["Title"] = Model.Heading;
+}
+
+<h1>@Model.Heading</h1>
+
+@using (Html.BeginForm("Category","Category"))
+{
+    
+@Html.AntiForgeryToken()
+@Html.HiddenFor(x=>x.Category.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(x=>x.Category.Name)
+        @Html.TextBoxFor(x=>x.Category.Name, new {@class="form-control" , autofocus="autofocus" } )
+        @Html.ValidationMessageFor(x =>x.Category.Name)
+    </div>
+    <button class="btn btn-primary btn-lg mt-2" type="submit">Zapisz</button>
+}

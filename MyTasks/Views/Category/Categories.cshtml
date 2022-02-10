@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MyTasks.Core.Models.Domains.Category>
+
+    <h1>Kategorie</h1>
+
+
+<div>
+
+<input type="button"  class= "btn btn-primary btn-lg "  value="Dodaj" onclick="location.href='@Url.Action("Category", "Category")'" />
+
+</div>
+
+
+<div id="CategoryTable">
+ <table class="table table-bordered table-hover mt-3">
+  <thead class="thead-dark ">
+    <tr>
+      <th scope="col">Opis</th>
+      <th scope="col"></th>  
+    </tr>
+  </thead>
+  <tbody>
+
+      @if (Model !=null && Model.Any())
+
+{
+      @foreach(var category in Model)
+        {
+            <tr>
+            <td>
+                  <a href="
+                @Url.Action("Category","Category", new { id =category.Id })" 
+                class="font-weight-bold">
+                @category.Name </a>
+            </td>
+                <td>
+                            <button class="btn btn-danger mr-2" onclick="deleteCategory(@category.Id, this)">
+                                Usuń
+                            </button>
+                </td>
+            </tr> 
+        }
+}
+    </tbody>
+   </table>
+
+</div>
+
+@section scripts 
+{
+     <script type="text/javascript" >
+    function deleteCategory(id, btn) {
+
+            if (!confirm("Czy na pewno chcesz usunąć zadanie?"))
+                return;
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("DeleteCategory", "Category")",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    if (data.success) {
+                        var row = btn.parentNode.parentNode;
+                        row.parentNode.removeChild(row);
+                    } else {
+                        alert(data.message);
+                    }
+                },
+                error: function (data) {
+                    alert(data.message)
+                },
+                dataType: "json"
+            });
+
+        }
+   </script>
+}

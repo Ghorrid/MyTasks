@@ -21,9 +21,9 @@ namespace MyTasks.Persistence.Services
         }
 
 
-        public IEnumerable<Category> GetCategories()
+        public IEnumerable<Category> GetCategories(string userId)
         {
-            return _unitOfWork.Task.GetCategories();
+            return _unitOfWork.Task.GetCategories(userId);
         }
 
         public Core.Models.Domains.Task Get(string userId, int id)

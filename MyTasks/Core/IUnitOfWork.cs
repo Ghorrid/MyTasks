@@ -7,6 +7,7 @@ namespace MyTasks.Core
     {
 
         ITaskRepository Task { get; set; }
+        ICategoryRepository Category { get; set; }
 
         void Complete();  
 

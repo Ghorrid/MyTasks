@@ -31,9 +31,9 @@ namespace MyTasks.Persistence.Repositories
         }
 
 
-        public IEnumerable<Category> GetCategories()
+        public IEnumerable<Category> GetCategories(string userId)
         {
-            return _context.Categories.OrderBy (x=>x.Name).ToList();
+            return _context.Categories.Where(x=> x.UserId == userId).OrderBy (x=>x.Name).ToList();
         }
 
         public Core.Models.Domains.Task Get(string userId, int id)
@@ -73,5 +73,6 @@ namespace MyTasks.Persistence.Repositories
             taskToFinish.IsExecuted = true;
 
         }
+
     }
 }

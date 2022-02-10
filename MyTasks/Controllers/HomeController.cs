@@ -15,7 +15,7 @@ namespace MyTasks.Controllers
 
         public IActionResult Index()
         {
-            return View("Tasks");
+            return View("Index");
         }
 
         public IActionResult Privacy()

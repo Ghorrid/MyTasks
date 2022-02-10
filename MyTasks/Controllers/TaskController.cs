@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyTasks.Core.Models;
+using MyTasks.Core.Models.Domains;
 using MyTasks.Core.Services;
 using MyTasks.Core.ViewModels;
 using MyTasks.Persistance;
@@ -34,11 +35,13 @@ namespace MyTasks.Controllers
             {
                 FilterTasks = new FilterTasks(),
                 Tasks = _taskService.Get(userId),
-                Categories = _taskService.GetCategories()
+                Categories = _taskService.GetCategories(userId)
             };
             return View(vm);
         }
-        
+
+
+
         [HttpPost]
         public IActionResult Tasks(TasksViewModel viewModel)
         {
@@ -65,7 +68,7 @@ namespace MyTasks.Controllers
             {
                 Task = task,
                 Heading = id == 0 ? "Dodawanie nowego zadania" : "Edycja zadania",                
-                Categories = _taskService.GetCategories()
+                Categories = _taskService.GetCategories(userId)
             };
 
             return View(vm);
@@ -84,7 +87,7 @@ namespace MyTasks.Controllers
                 {
                     Task = task,
                     Heading = task.Id == 0 ? "Dodawanie nowego zadania" : "Edycja zadania",
-                    Categories = _taskService.GetCategories()
+                    Categories = _taskService.GetCategories(userId)
                 };
                 return View("Task", vm);
 
